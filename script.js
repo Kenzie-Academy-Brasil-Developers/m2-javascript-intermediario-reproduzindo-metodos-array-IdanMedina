@@ -58,26 +58,18 @@ function callbackReduce(acumulator, valorAtual) {
   return acumulator + valorAtual;
 }
 
-function reduce(array, callback, initialValue) {
+function reduce(array, callback, initialValue = 0) {
   let incrementador = []
   let acumulador = 0
-  if(initialValue){
+  
   for(let i = initialValue; i < array.length; i++){
     acumulador = callback(acumulador, array[i])
     //console.log(acumulador)
   }
   incrementador.push(acumulador)
-}
-else{
-  initialValue = 0
-  for(let i = initialValue; i < array.length; i++){
-    acumulador = callback(acumulador, array[i])
-    //console.log(acumulador)
-  }
-  incrementador.push(acumulador)
-}
   return incrementador
 }
+
 
  console.log(reduce(arrayReduce, callbackReduce));
  console.log(reduce(arrayReduce, callbackReduce, 50));
