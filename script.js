@@ -7,12 +7,20 @@ const arrayMap = [1, 2, 3, 4, 5]; //esse é o array que você terá que iterar
 function callbackMap(element, index, array) {
   return `Número ${element} no index: ${index}, veio desse array: ${array}`;
 }
-
+//console.log(callbackMap(1, 0, arrayMap))
 function map(array, callback) {
-  //sua lógica
+  let newArray = []
+  for(let i = 0; i < array.length; i++){
+    /* let element = array[i];
+    let index = i;*/
+    let result = callback(array[i], i, array)
+    newArray.push(result)
+   //return callback(array[i], i, array)
+  }
+  return newArray
 }
 
-//console.table(map(arrayMap, callbackMap));
+console.table(map(arrayMap, callbackMap));
 
 //Método Filter ---------
 
@@ -22,15 +30,23 @@ const arrayFilter = [1, 2, 3, 4, 5]; //esse é o array que você terá que itera
 // Ela apenas imprime o elemento que for maior que 2
 function callbackFilter(element, index, array) {
   if (element > 2 && index && array.length > 2) {
-    return true;
+    return element;
   }
 }
-
+//console.log(callbackFilter(1,0,arrayFilter))
+const newArray = []
 function filter(array, callback) {
-  //sua lógica
+  for(let i = 0; i < array.length; i++){
+    let result = callback(array[i], i, array)
+    if (result){
+      newArray.push(result)
+    }
+    
+  }
+  return newArray
 }
 
-//console.log(filter(arrayFilter, callbackFilter));
+console.log(filter(arrayFilter, callbackFilter));
 
 //Método Reduce ---------
 
@@ -42,9 +58,26 @@ function callbackReduce(acumulator, valorAtual) {
   return acumulator + valorAtual;
 }
 
-function reduce(array, callback, initialValue = 0) {
-  //sua lógica
+function reduce(array, callback, initialValue) {
+  let incrementador = []
+  let acumulador = 0
+  if(initialValue){
+  for(let i = initialValue; i < array.length; i++){
+    acumulador = callback(acumulador, array[i])
+    //console.log(acumulador)
+  }
+  incrementador.push(acumulador)
+}
+else{
+  initialValue = 0
+  for(let i = initialValue; i < array.length; i++){
+    acumulador = callback(acumulador, array[i])
+    //console.log(acumulador)
+  }
+  incrementador.push(acumulador)
+}
+  return incrementador
 }
 
-// console.log(reduce(arrayReduce, callbackReduce));
-// console.log(reduce(arrayReduce, callbackReduce, 50));
+ console.log(reduce(arrayReduce, callbackReduce));
+ console.log(reduce(arrayReduce, callbackReduce, 50));
