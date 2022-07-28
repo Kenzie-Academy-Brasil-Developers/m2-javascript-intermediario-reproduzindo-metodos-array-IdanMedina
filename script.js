@@ -60,9 +60,9 @@ function callbackReduce(acumulator, valorAtual) {
 
 function reduce(array, callback, initialValue = 0) {
   let incrementador = []
-  let acumulador = 0
+  let acumulador = initialValue
   
-  for(let i = initialValue; i < array.length; i++){
+  for(let i = 0; i < array.length; i++){
     acumulador = callback(acumulador, array[i])
     //console.log(acumulador)
   }
